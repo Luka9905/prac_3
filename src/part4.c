@@ -4,71 +4,62 @@
 
 int main() {
     int n;
-    int *b;
-    float *c;
+    int *ptrb;
+    float *ptrc;
     int c_size = 0;
 
     printf("Введите размер массива: ");
     scanf("%d", &n);
 
-    b = (int *)malloc(n * sizeof(int));
-    if (b == NULL) {
-        printf("Ошибка выделения памяти!\n");
-        return 1;
-    }
+    ptrb = (int *)malloc(n * sizeof(int));
 
     printf("Введите элементы массива:\n");
     for (int i = 0; i < n; i++) {
-        scanf("%d", &b[i]);
+        scanf("%d", &ptrb[i]);
     }
 
     for (int i = 0; i < n; i++) {
-        if (b[i] > 0) {
+        if (ptrb[i] > 0) {
             c_size++;
         }
     }
 
-    c = (float *)malloc(c_size * sizeof(float));
-    if (c == NULL) {
-        printf("Ошибка выделения памяти!\n");
-        free(b);
-        return 1;
-    }
+    ptrc = (float *)malloc(c_size * sizeof(float));
 
     int c_index = 0;
     for (int i = 0; i < n; i++) {
-        if (b[i] > 0) {
-            c[c_index] = sqrt(b[i]) / 5.0;
+        if (ptrb[i] > 0) {
+            ptrc[c_index] = sqrt(ptrb[i]) / 5.0;
             c_index++;
         }
     }
 
-    printf("Массив c до сортировки:\n");
+    printf("Массив С до сортировки:\n");
     for (int i = 0; i < c_size; i++) {
-        printf("%.2f ", c[i]);
+        printf("%.2f ", ptrc[i]);
     }
     printf("\n");
 
     for (int i = 0; i < c_size - 1; i++) {
         int min_index = i;
         for (int j = i + 1; j < c_size; j++) {
-            if (c[j] < c[min_index]) {
+            if (ptrc[j] < ptrc[min_index]) {
                 min_index = j;
             }
         }
-        float temp = c[i];
-        c[i] = c[min_index];
-        c[min_index] = temp;
+        float t = ptrc[i];
+        ptrc[i] = ptrc[min_index];
+        ptrc[min_index] = t;
     }
 
-    printf("Массив c после сортировки:\n");
+    printf("Массив С после сортировки:\n");
     for (int i = 0; i < c_size; i++) {
-        printf("%.2f ", c[i]);
+        printf("%.2f ", ptrc[i]);
     }
     printf("\n");
 
-    free(b);
-    free(c);
+    free(ptrb);
+    free(ptrc);
 
     return 0;
 }
