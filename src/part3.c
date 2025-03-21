@@ -18,7 +18,7 @@ int main()
         scanf("%d", &ptr[i]);
         if (ptr[i] < 0)
         {
-            printf("Номер элемента %d <0: \n", i);
+            printf("Номер отрицательного элемента %d : \n", i);
             sum += ptr[i];
             count++;
         }
